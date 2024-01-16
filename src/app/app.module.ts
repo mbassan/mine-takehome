@@ -3,6 +3,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Angular Material
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+
 // Google Firebase
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -11,13 +17,25 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// App Components
+import { RecipesComponent } from './recipes/recipes.component';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+    RecipesComponent,
+    RecipeCardComponent,
+    RecipeDetailsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatSidenavModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp({

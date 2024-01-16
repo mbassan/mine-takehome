@@ -1,6 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { collectionData, Firestore } from "@angular/fire/firestore";
-import { doc, deleteDoc, collection, CollectionReference, addDoc, updateDoc } from "firebase/firestore";
+import { doc, deleteDoc, collection, addDoc, updateDoc } from "firebase/firestore";
 import { EMPTY, first, from, Observable, switchMap, tap } from "rxjs";
 
 import { Recipe } from "../models/recipe.interface";
@@ -10,21 +10,20 @@ import { Recipe } from "../models/recipe.interface";
 })
 export class DatabaseService {
     private firestore: Firestore = inject(Firestore);
-    recipesCollection: CollectionReference;
-    recipes$: Observable<Recipe[]>;
-    
-    constructor() {
-        // get a reference to the recipes collection
-        this.recipesCollection = collection(this.firestore, 'recipes');
 
-        // get documents (data) from the collection using collectionData
-        this.recipes$ = collectionData(this.recipesCollection, { idField: 'id' }) as Observable<Recipe[]>;
+    getRecipes(): Observable<Recipe[]> {
+        const recipes$ = collectionData(collection(this.firestore, 'recipes'), { idField: 'id' }) as Observable<Recipe[]>;
+        
+        return recipes$.pipe(
+            first(),
+            tap(recipes => console.log(`Recipes:`, recipes))
+        );
     }
 
     addRecipe(recipe: Recipe): Observable<void> {
         if (!recipe) return EMPTY;
 
-        return from(addDoc(this.recipesCollection, <Recipe>{ ...recipe })).pipe(
+        return from(addDoc(collection(this.firestore, 'recipes'), <Recipe>{ ...recipe })).pipe(
             tap(docRef => console.log(`Added a new recipe with ID: ${docRef.id}`)),
             switchMap(docRef => updateDoc(doc(this.firestore, "recipes", docRef.id), { ... recipe, id: docRef.id })),
             first()

@@ -1,0 +1,28 @@
+<div class="recipe-card__img" [ngStyle]="{ 'background-image': 'url(' + recipe.image + ')'}">
+
+    <svg *ngIf="recipe.favorite" class="recipe-card__favorite-icon">
+        <use xlink:href="../../assets/sprite.svg#icon-favorite"></use>
+    </svg>
+
+</div>
+
+<div class="recipe-card__details-container">
+
+    <h1 class="recipe-card__name">{{recipe.name}}</h1>
+
+    <div class="recipe-card__details">
+
+        <span class="recipe-card__detail">
+            <mat-chip>{{recipe.style}}</mat-chip>
+        </span>
+
+        <span class="recipe-card__detail">
+            <svg class="recipe-card__icon">
+                <use xlink:href="../../assets/sprite.svg#icon-time"></use>
+            </svg>
+            {{recipe.time}}m
+        </span>
+
+    </div>
+
+</div>
