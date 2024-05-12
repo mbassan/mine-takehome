@@ -1,0 +1,148 @@
+<!-- not able to finish because of typing issues... -->
+<!-- <ng-template #formField let-name let-value let-placeholder let-label let-error>
+  <div class="form-field">
+    <label>{{ label }}</label>
+    <input matInput placeholder="placeholder" [(ngModel)]="value" />
+    <div *ngIf="!!error" class="form-field-error">
+      {{ error }}
+    </div>
+  </div>
+</ng-template> -->
+
+<h1 class="recipes__title title">
+  {{ isEditing ? "Edit Recipe" : "New Recipe" }}
+</h1>
+<div class="form">
+  <svg class="close-button" (click)="close()">
+    <use xlink:href="../../assets/sprite.svg#icon-close"></use>
+  </svg>
+  <div class="form-row">
+    <div class="form-row-left">
+      <div class="form-field">
+        <label>Name</label>
+        <input matInput placeholder="Dish name" [(ngModel)]="recipeForm.name" />
+        <div *ngIf="!!errors.name" class="form-field-error">
+          {{ errors.name }}
+        </div>
+      </div>
+    </div>
+    <div class="form-row-right">
+      <div class="form-field">
+        <label>Style</label>
+        <select [(ngModel)]="recipeForm.style">
+          <option [value]="style" *ngFor="let style of styleOptions">
+            {{ style }}
+          </option>
+        </select>
+        <div *ngIf="!!errors.style" class="form-field-error">
+          {{ errors.style }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-row-left">
+      <div class="form-field">
+        <label>Author</label>
+        <input matInput placeholder="Author" [(ngModel)]="recipeForm.author" />
+      </div>
+    </div>
+    <div class="form-row-right">
+      <div class="form-field">
+        <label>Time (minutes)</label>
+        <input matInput placeholder="120" [(ngModel)]="recipeForm.time" />
+        <div *ngIf="!!errors.time" class="form-field-error">
+          {{ errors.time }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-field">
+      <label>Image</label>
+      <input
+        matInput
+        placeholder="http://domain.com/some-image.jpg"
+        [(ngModel)]="recipeForm.image"
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-field">
+      <label>Notes</label>
+      <textarea
+        matInput
+        placeholder="Take notes here..."
+        [(ngModel)]="recipeForm.notes"
+      ></textarea>
+    </div>
+  </div>
+  <div class="form-list">
+    <div class="form-list-title">
+      <h3>Ingredients</h3>
+      <button
+        class="form-add-btn secondary"
+        (click)="addToArrayProperty('ingredients')"
+      >
+        + Add
+      </button>
+    </div>
+    <div *ngIf="!!errors.ingredients" class="form-list-error">
+      {{ errors.ingredients }}
+    </div>
+    <div
+      class="form-list-item"
+      *ngFor="
+        let ingredient of recipeForm.ingredients;
+        let i = index;
+        trackBy: trackByFn
+      "
+    >
+      <input matInput [(ngModel)]="recipeForm.ingredients[i]" />
+      <svg
+        class="form-list-item-delete-btn"
+        (click)="deleteFromArrayProperty('ingredients', i)"
+      >
+        <use xlink:href="../../assets/sprite.svg#icon-delete"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="form-list">
+    <div class="form-list-title">
+      <h3>Instructions</h3>
+      <button
+        class="form-add-btn secondary"
+        (click)="addToArrayProperty('instructions')"
+      >
+        + Add
+      </button>
+    </div>
+    <div *ngIf="!!errors.instructions" class="form-list-error">
+      {{ errors.instructions }}
+    </div>
+    <div
+      class="form-list-item"
+      *ngFor="
+        let instruction of recipeForm.instructions;
+        let i = index;
+        trackBy: trackByFn
+      "
+    >
+      <input matInput [(ngModel)]="recipeForm.instructions[i]" />
+      <svg
+        class="form-list-item-delete-btn"
+        (click)="deleteFromArrayProperty('instructions', i)"
+      >
+        <use xlink:href="../../assets/sprite.svg#icon-delete"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="form-footer">
+    <button class="recipes__add-btn primary" (click)="saveRecipe()">
+      Save
+    </button>
+    <button class="recipes__add-btn tertiary" (click)="deleteRecipe()">
+      Delete recipe
+    </button>
+  </div>
+</div>

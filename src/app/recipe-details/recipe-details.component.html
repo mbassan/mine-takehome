@@ -1,2 +1,69 @@
 <!-- load recipe component here -->
-<ng-template #recipeComponentContainer></ng-template>
+<div #recipeComponentContainer class="recipe-details">
+  <div
+    class="recipe-details__img"
+    [ngStyle]="{ 'background-image': 'url(' + recipe.image + ')' }"
+  >
+    <svg class="close-button" (click)="close()">
+      <use xlink:href="../../assets/sprite.svg#icon-close"></use>
+    </svg>
+  </div>
+  <div class="recipe-details__container">
+    <h1 class="recipe-details__name recipes__title">
+      <span>{{ recipe.name }}</span>
+      <button
+        class="recipes__add-btn {{ recipe.favorite ? 'primary' : 'secondary' }}"
+        (click)="addToFavorites()"
+      >
+        <mat-icon fontIcon="star" />
+        {{ recipe.favorite ? "Unlike" : "Like" }}
+      </button>
+      <button class="recipes__add-btn secondary" (click)="editRecipe()">
+        Edit
+      </button>
+    </h1>
+
+    <div class="recipe-details__meta">
+      <div class="recipe-details__author">
+        <span>By: {{ recipe.author }}</span>
+        <span>Created at: {{ formatDate(recipe.created) }}</span>
+      </div>
+      <div class="recipe-details__time-and-style">
+        <mat-chip>{{ recipe.style }}</mat-chip>
+        <span class="recipe-details__time">
+          <svg class="recipe-details__icon">
+            <use xlink:href="../../assets/sprite.svg#icon-time"></use>
+          </svg>
+          <span>{{ recipe.time }}m</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="recipe-details__info">
+      <div class="recipe-details__info__item">
+        <h3 class="recipe-details__info__item__title">Notes</h3>
+        <div class="recipe-details__info__item__gray-area">
+          {{ recipe.notes }}
+        </div>
+      </div>
+      <div class="recipe-details__info__item">
+        <h3 class="recipe-details__info__item__title">Ingredients</h3>
+        <div class="recipe-details__info__item__gray-area">
+          <div *ngFor="let ingredient of recipe.ingredients">
+            {{ ingredient }}
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-details__info__item">
+        <h3 class="recipe-details__info__item__title">Instructions</h3>
+        <div class="recipe-details__info__item__numbered-list">
+          <div *ngFor="let instruction of recipe.instructions; let i = index">
+            <span>{{ i + 1 }}</span
+            ><span>{{ instruction }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

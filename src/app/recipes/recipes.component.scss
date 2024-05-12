@@ -1,145 +1,137 @@
 .recipes {
-    &__drawer-container {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
+  &__drawer-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 
-    &__drawer-content {
-        display: grid;
-        grid-template-areas:
-        "title toggle btn"
-        "container container container";
-        grid-template-columns: min-content 1fr;
-        grid-template-rows: repeat(2, min-content);
-        justify-content: flex-start;
-        align-items: center;
-        padding: 6.6rem 9.9rem;
-        gap: 2.8rem;
-    }
+  &__drawer-content {
+    display: grid;
+    grid-template-areas:
+      "title toggle btn"
+      "container container container";
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: repeat(2, min-content);
+    justify-content: flex-start;
+    align-items: center;
+    padding: 6.6rem 9.9rem;
+    gap: 2.8rem;
+  }
 
-    &__title {
-        grid-area: title;
-        font-family: var(--font-poppins);
-        font-size: 3rem;
-        font-weight: 400;
-        line-height: 4.5rem;
-    }
+  &__add-btn {
+    grid-area: btn;
+  }
 
-    &__add-btn {
-        grid-area: btn;
-    }
+  &__add-svg {
+    position: relative;
+    fill: var(--btn-text-color);
+    width: 1.4rem;
+    height: 1.4rem;
+    top: -1px;
+  }
 
-    &__add-svg {
-        position: relative;
-        fill: var(--btn-text-color);
-        width: 1.4rem;
-        height: 1.4rem;
-        top: -1px;
-    }
+  &__container {
+    grid-area: container;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 3.7rem 0;
+    gap: 3.2rem;
+  }
 
-    &__container {
-        grid-area: container;
-        display: flex;
-        flex-flow: row wrap;
-        margin: 3.7rem 0;
-        gap: 3.2rem;
-    }
+  &__toggle-btn {
+    grid-area: toggle;
+  }
 
-    &__toggle-btn {
-        grid-area: toggle;
-    }
+  &__toggle-option {
+    width: 13rem;
+    color: #95949a;
+    font-size: 1.4rem;
+    position: relative;
+    text-align: center;
+    height: fit-content;
+    transition: all 0.3s;
+    top: 6px;
+  }
 
-    &__toggle-option {
-        width: 13rem;
-        color: #95949A;
-        font-size: 1.4rem;
-        position: relative;
-        text-align: center;
-        height: fit-content;
+  &__toggle-checkbox {
+    display: none;
+
+    &:checked + .recipes__toggle-container {
+      &::before {
+        left: 50%;
+      }
+
+      div:first-child {
+        color: #95949a;
+        font-weight: normal;
         transition: all 0.3s;
-        top: 6px;
-    }
+      }
 
-    &__toggle-checkbox {
-        display: none;
+      div:last-child {
+        color: #41a4ff;
+        font-weight: bold;
+        transition: all 0.3s;
 
-        &:checked + .recipes__toggle-container {
-            &::before {
-                left: 50%;
-            }
-
-            div:first-child {
-                color: #95949A;
-                font-weight: normal;
-                transition: all 0.3s;
-            }
-
-            div:last-child {
-                color: #41A4FF;
-                font-weight: bold;
-                transition: all 0.3s;
-
-                svg {
-                    fill: #41A4FF;
-                }
-            }
+        svg {
+          fill: #41a4ff;
         }
-
-        + .recipes__toggle-container {
-            div:first-child {
-                color: #41A4FF;
-                font-weight: bold;
-                transition: all 0.3s;
-            }
-
-            div:last-child {
-                color: #95949A;
-                font-weight: normal;
-                transition: all 0.3s;
-            }
-        } 
+      }
     }
 
-    &__toggle-container {
-        cursor: pointer;
-        width: 23.9rem;
-        height: 4.2rem;
-        position: relative;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        border-radius: 2.1rem;
-        background: #F4F4F4;
+    + .recipes__toggle-container {
+      div:first-child {
+        color: #41a4ff;
+        font-weight: bold;
+        transition: all 0.3s;
+      }
 
-        &::before {
-            content: "";
-            position: absolute;
-            width: 11.35rem;
-            height: calc(100% - 1.2rem);
-            left: 6px;
-            top: 6px;
-            border-radius: 3rem;
-            background: white;
-            transition: all 0.3s;
-        }
+      div:last-child {
+        color: #95949a;
+        font-weight: normal;
+        transition: all 0.3s;
+      }
+    }
+  }
 
-        > div {
-            width: 11.35rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 6px;
-            z-index: 1;
-            gap: 2px;
-        }
+  &__toggle-container {
+    cursor: pointer;
+    width: 23.9rem;
+    height: 4.2rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 2.1rem;
+    background: #f4f4f4;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 11.35rem;
+      height: calc(100% - 1.2rem);
+      left: 6px;
+      top: 6px;
+      border-radius: 3rem;
+      background: white;
+      transition: all 0.3s;
     }
 
-    &__favorite-svg {
-        width: 1.4rem;
-        height: 1.3rem;
-        fill: #95949A;
+    > div {
+      width: 11.35rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6px;
+      z-index: 1;
+      gap: 2px;
     }
+  }
+
+  &__favorite-svg {
+    width: 1.4rem;
+    height: 1.3rem;
+    fill: #95949a;
+  }
 }

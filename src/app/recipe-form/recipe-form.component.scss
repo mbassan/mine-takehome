@@ -1,0 +1,114 @@
+.title {
+  padding: 32px;
+}
+.form {
+  padding: 0 32px 72px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  label {
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+    padding-bottom: 5px;
+    display: block;
+  }
+
+  &-row {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    gap: 24px;
+
+    input,
+    textearea,
+    select {
+      width: 100%;
+    }
+  }
+  &-field {
+    flex-grow: 1;
+    position: relative;
+
+    &-error {
+      color: var(--error-color);
+      position: absolute;
+      bottom: -16px;
+      left: 16px;
+    }
+  }
+  &-row-left {
+    flex-grow: 1;
+  }
+  &-row-right {
+    width: 150px;
+  }
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &-error {
+      color: var(--error-color);
+    }
+
+    &-title {
+      display: flex;
+      justify-content: stretch;
+      align-items: center;
+
+      h3 {
+        flex-grow: 1;
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+    &-item {
+      background-color: var(--gray-bg-color);
+      padding: 12px;
+      border-radius: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      & > input {
+        flex-grow: 1;
+      }
+
+      &-delete-btn {
+        fill: var(--error-color);
+        height: 17px;
+        width: 17px;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+  &-footer {
+    background-color: var(--gray-bg-color);
+    padding: 16px 32px 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 1px #7552f621 inset;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .primary {
+    padding: 0 30px;
+  }
+
+  .secondary {
+    height: 27px;
+  }
+
+  textarea {
+    min-height: 75px;
+  }
+}
